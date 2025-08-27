@@ -59,10 +59,7 @@ export function DragAndDropForm() {
     maxFiles: 1,
     maxSize: 1024 * 1024 * 5, // Increased to 5MB
     multiple: false,
-    accept: {
-      "application/json": [".json"],
-      "text/plain": [".txt", ".json"],
-    },
+    accept: ".json,.txt,application/json,text/plain",
   });
 
   return (
