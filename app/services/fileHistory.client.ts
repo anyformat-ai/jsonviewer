@@ -37,18 +37,40 @@ export class FileHistoryService {
       // Remove existing item if it exists
       const filteredHistory = history.filter(h => h.id !== item.id);
       
+      // Limit preview size for large files to prevent localStorage issues
+      const preview = item.preview && item.preview.length > 2000 
+        ? item.preview.substring(0, 2000) + '...'
+        : item.preview;
+      
       // Add new item at the beginning
       const newItem: FileHistoryItem = {
         ...item,
+        preview,
         createdAt: now,
         lastAccessed: now,
       };
       
       const updatedHistory = [newItem, ...filteredHistory].slice(0, MAX_HISTORY_ITEMS);
       
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedHistory));
+      // Check if the data is too large for localStorage - increased for large files
+      const dataToStore = JSON.stringify(updatedHistory);
+      if (dataToStore.length > 50 * 1024 * 1024) { // 50MB localStorage limit (most browsers support this)
+        console.warn('File history too large, removing oldest items');
+        const reducedHistory = updatedHistory.slice(0, Math.floor(MAX_HISTORY_ITEMS / 2));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(reducedHistory));
+      } else {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedHistory));
+      }
     } catch (error) {
       console.error('Failed to save to file history:', error);
+      // If localStorage is full, try to clear some space
+      try {
+        const history = this.getHistory();
+        const reducedHistory = history.slice(0, 10); // Keep only 10 most recent
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(reducedHistory));
+      } catch (clearError) {
+        console.error('Failed to clear file history:', clearError);
+      }
     }
   }
 

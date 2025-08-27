@@ -81,12 +81,40 @@ export const loader: LoaderFunction = async ({ params, request }) => {
       minimal,
     };
   } else {
-    return {
-      doc,
-      json: JSON.parse(doc.contents),
-      path,
-      minimal,
-    };
+    try {
+      console.log('Loading document:', doc.id, 'content length:', doc.contents.length);
+      
+      // Check if content is too large for safe parsing - being generous with 18GB RAM
+      const MAX_DOC_SIZE = (typeof process !== 'undefined' && process.env.NODE_ENV === 'development') 
+        ? 500 * 1024 * 1024  // 500MB for development
+        : 1024 * 1024 * 1024; // 1GB for production
+        
+      if (doc.contents.length > MAX_DOC_SIZE) {
+        const sizeMB = Math.round(MAX_DOC_SIZE / 1024 / 1024);
+        console.error('Document too large for parsing:', doc.contents.length, 'limit:', MAX_DOC_SIZE);
+        throw new Response(`Document too large to display. Maximum size is ${sizeMB}MB.`, {
+          status: 413, // Payload Too Large
+        });
+      }
+      
+      const json = JSON.parse(doc.contents);
+      console.log('JSON parsed successfully');
+      
+      return {
+        doc,
+        json,
+        path,
+        minimal,
+      };
+    } catch (e) {
+      console.error('Error parsing stored JSON:', e);
+      if (e instanceof Response) {
+        throw e; // Re-throw custom responses
+      }
+      throw new Response("Invalid JSON content in document", {
+        status: 500,
+      });
+    }
   }
 };
 

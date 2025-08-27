@@ -29,9 +29,12 @@ export let action: ActionFunction = async ({ request, context }) => {
   invariant(typeof jsonUrl === "string", "jsonUrl must be a string");
 
   try {
+    console.log("Processing JSON input, length:", jsonUrl.length);
+    
     const doc = await createFromUrlOrRawJson(jsonUrl, title);
 
     if (!doc) {
+      console.error("Document creation returned undefined");
       setErrorMessage(
         toastCookie,
         "Unknown error",
@@ -42,6 +45,8 @@ export let action: ActionFunction = async ({ request, context }) => {
         headers: { "Set-Cookie": await commitSession(toastCookie) },
       });
     }
+
+    console.log("Document created successfully:", doc.id);
 
     const requestUrl = new URL(request.url);
 
@@ -57,6 +62,8 @@ export let action: ActionFunction = async ({ request, context }) => {
 
     return redirect(`/j/${doc.id}`);
   } catch (e) {
+    console.error("Error in createFromUrl action:", e);
+    
     if (e instanceof Error) {
       setErrorMessage(toastCookie, e.message, "Something went wrong");
     } else {
