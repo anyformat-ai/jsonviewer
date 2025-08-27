@@ -9,9 +9,9 @@ import { Logo } from "~/components/Icons/Logo";
 import { ExtraLargeTitle } from "~/components/Primitives/ExtraLargeTitle";
 import { SmallSubtitle } from "~/components/Primitives/SmallSubtitle";
 import { DragAndDropForm } from "~/components/DragAndDropForm";
-import { UrlForm } from "~/components/UrlForm";
-import { SampleUrls } from "~/components/SampleUrls";
+import { JsonInputForm } from "~/components/JsonInputForm";
 import { Title } from "~/components/Primitives/Title";
+import { FileInspector } from "~/components/FileInspector";
 
 type LoaderData = { toastMessage?: ToastMessage };
 
@@ -31,57 +31,51 @@ export default function Index() {
   const { toastMessage } = useLoaderData<LoaderData>();
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      {toastMessage && (
-        <ToastPopover
-          message={toastMessage.message}
-          title={toastMessage.title}
-          type={toastMessage.type}
-          key={toastMessage.id}
-        />
-      )}
+          <div className="min-h-screen bg-white">
+        {toastMessage && (
+          <ToastPopover
+            message={toastMessage.message}
+            title={toastMessage.title}
+            type={toastMessage.type}
+            key={toastMessage.id}
+          />
+        )}
 
-      {/* Header */}
-      <div className="flex justify-center pt-12 pb-8">
-        <Logo />
-      </div>
+        {/* Header */}
+        <div className="flex justify-center pt-8 pb-8">
+          <Logo />
+        </div>
 
-      {/* Main Content */}
-      <div className="flex-grow flex items-center justify-center px-8">
-        <div className="max-w-4xl w-full text-center">
-          <ExtraLargeTitle className="text-gray-900 mb-4 font-inter font-bold">
-            Professional JSON Viewer
-          </ExtraLargeTitle>
-          <ExtraLargeTitle className="text-gray-700 mb-6 font-inter font-medium">
-            Beautiful interface for developers & data teams
-          </ExtraLargeTitle>
-          <SmallSubtitle className="text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Explore JSON data with our intuitive column view, powerful search capabilities, 
-            and intelligent content previews. Perfect for APIs, configurations, and data analysis.
-          </SmallSubtitle>
-
-          {/* Large Drop Zone Section */}
-          <div className="space-y-10">
-            {/* URL Input */}
-            <div className="mb-8">
-              <UrlForm />
+        {/* Main Content Container */}
+        <div className="max-w-6xl mx-auto px-6">
+          {/* Drop Zone Section */}
+          <div className="mb-12">
+            <div className="text-center mb-8">
+              <ExtraLargeTitle className="text-gray-900 mb-2 font-inter font-bold">
+                JSON Viewer
+              </ExtraLargeTitle>
+              <SmallSubtitle className="text-gray-600 font-inter">
+                Drop a file, paste JSON, or enter a URL to get started
+              </SmallSubtitle>
             </div>
 
-            {/* Large Drag and Drop Area */}
-            <div className="mx-auto max-w-2xl">
+            {/* Upload Options */}
+            <div className="space-y-8">
+              {/* Large Drag and Drop Area */}
               <DragAndDropForm />
-            </div>
 
-            {/* Sample URLs */}
-            <div className="mt-16 pt-8 border-t border-gray-200">
-              <Title className="mb-6 text-gray-700 font-inter font-medium">Try with sample data:</Title>
-              <SampleUrls />
+              {/* Enhanced JSON Input Form */}
+              <JsonInputForm />
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Footer */}
+          {/* File Inspector Table */}
+          <div className="mb-12">
+            <FileInspector />
+          </div>
+        </div>
+
+        {/* Footer */}
       <div className="text-center py-12 border-t border-gray-100">
         <SmallSubtitle className="text-gray-500 font-inter">
           Powered by{" "}

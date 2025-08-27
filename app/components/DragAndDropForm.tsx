@@ -66,11 +66,11 @@ export function DragAndDropForm() {
     <Form method="post" action="/actions/createFromFile" ref={formRef}>
       <div
         {...getRootProps()}
-        className={`block w-full cursor-pointer rounded-xl border-2 border-dashed transition-all duration-200 text-center ${
-          isDragActive 
-            ? "border-blue-500 bg-blue-50 text-blue-600" 
-            : "border-gray-300 bg-gray-50 text-gray-600 hover:border-gray-400 hover:bg-gray-100"
-        } p-16 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20`}
+                         className={`block w-full cursor-pointer rounded-xl border-2 border-dashed transition-all duration-200 text-center ${
+                   isDragActive
+                     ? "border-blue-500 bg-blue-50 text-blue-600"
+                     : "border-gray-300 bg-gray-50 text-gray-600 hover:border-gray-400 hover:bg-gray-100"
+                 } p-12 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20`}
       >
         <input {...getInputProps()} />
         <div className="flex flex-col items-center space-y-6">

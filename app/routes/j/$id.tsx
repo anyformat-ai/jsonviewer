@@ -37,6 +37,7 @@ import {
   setSuccessMessage,
 } from "~/services/toast.server";
 import { getRandomUserAgent } from '~/utilities/getRandomUserAgent'
+import { FileHistoryTracker } from "~/components/FileHistoryTracker";
 
 export const loader: LoaderFunction = async ({ params, request }) => {
   invariant(params.id, "expected params.id");
@@ -195,6 +196,7 @@ export default function JsonDocumentRoute() {
       minimal={loaderData.minimal}
     >
       <JsonProvider initialJson={loaderData.json}>
+        <FileHistoryTracker />
         <JsonSchemaProvider>
           <JsonColumnViewProvider>
             <JsonSearchProvider>
