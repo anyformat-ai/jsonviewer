@@ -1,0 +1,15 @@
+{
+  "id": "test-html-content",
+  "title": "Sample HTML Content",
+  "description": "<p>This is a <strong>sample</strong> JSON file with HTML content to test the new HTML rendering feature.</p>",
+  "htmlContent": "<div class='content'><h2>Welcome to JSON Hero</h2><p>This HTML content should be rendered beautifully with our new HTML preview feature!</p><ul><li>Lists work too</li><li>And <em>emphasized text</em></li><li>Even <a href='https://jsonhero.io'>links</a></li></ul></div>",
+  "simpleHtml": "<h3>Simple HTML</h3><p>This is just a simple paragraph with <code>code</code> and <mark>highlighted</mark> text.</p>",
+  "plainText": "This is just plain text without any HTML",
+  "notHtml": "This might look like HTML but <notreal>it's not</notreal> valid",
+  "richContent": "<article><header><h1>Article Title</h1><p><time datetime='2024-01-15'>January 15, 2024</time></p></header><section><p>This is a rich HTML article with proper semantic markup. It includes <strong>bold text</strong>, <em>italic text</em>, and even <a href='#'>links</a>.</p><blockquote><p>This is a quote within the article.</p></blockquote><p>And here's some more content with a list:</p><ol><li>First item</li><li>Second item with <code>inline code</code></li><li>Third item</li></ol></section></article>",
+  "metadata": {
+    "created": "2024-01-15T10:30:00Z",
+    "author": "JSON Hero Team",
+    "version": "1.0"
+  }
+}

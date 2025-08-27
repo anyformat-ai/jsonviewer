@@ -12,9 +12,14 @@ import { PreviewImageUri } from "./PreviewImageUri";
 import { PreviewIPFSImage } from "./PreviewIPFSImage";
 import { PreviewUri } from "./PreviewUri";
 import { PreviewVideoUri } from "./PreviewVideoUri";
+import { PreviewRawHtml, isLikelyHTML } from "./PreviewRawHtml";
 
 export function PreviewString({ info }: { info: JSONStringType }) {
+  // Check for HTML content even if no specific format is detected
   if (info.format == null) {
+    if (isLikelyHTML(info.value)) {
+      return <PreviewRawHtml value={info.value} />;
+    }
     return <></>;
   }
 
@@ -74,6 +79,10 @@ export function PreviewString({ info }: { info: JSONStringType }) {
     case "json":
       return <PreviewJson value={info.value} format={info.format} />;
     default:
+      // Check for HTML content as a fallback for unhandled formats
+      if (isLikelyHTML(info.value)) {
+        return <PreviewRawHtml value={info.value} />;
+      }
       return <></>;
   }
 }
