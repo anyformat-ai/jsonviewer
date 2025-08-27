@@ -27,8 +27,9 @@ module.exports = {
         jsonViewerHeightMinimal: "calc(100vh - 66px)",
       },
       fontFamily: {
-        sans: ["Source Sans Pro", "sans-serif"],
-        mono: ["Roboto Mono", "monospace"],
+        sans: ["Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+        mono: ["SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Consolas", "Courier New", "monospace"],
+        inter: ["Inter", "system-ui", "sans-serif"],
       },
     },
   },

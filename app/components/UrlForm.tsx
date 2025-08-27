@@ -18,25 +18,25 @@ export function UrlForm({ className }: UrlFormProps) {
       action="/actions/createFromUrl"
       className={`${className}`}
     >
-      <div className="flex">
+      <div className="flex max-w-2xl mx-auto">
         <input
           type="text"
           name="jsonUrl"
           id="jsonUrl"
-          className="block flex-grow text-base text-slate-200 placeholder:text-slate-300 bg-slate-900/40 border border-slate-600 rounded-l-sm py-2 px-3 transition duration-300 focus:ring-indigo-500 focus:border-indigo-500"
-          placeholder="Enter a JSON URL or paste in JSON here..."
+          className="block flex-grow text-base text-gray-700 placeholder:text-gray-400 bg-white border border-gray-300 rounded-l-lg py-3 px-4 font-inter transition duration-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
+          placeholder="Enter a JSON URL or paste JSON here..."
           value={inputValue}
           onChange={(event) => setInputValue(event.target.value)}
         />
         <button
           type="submit"
           value="Go"
-          className={`inline-flex items-center justify-center px-4 py-2 border border-transparent font-medium rounded-r-sm text-white bg-lime-500 transition hover:bg-lime-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-lime-500 ${
-            isButtonDisabled && "disabled:opacity-50 disabled:hover:bg-lime-500"
+          className={`inline-flex items-center justify-center px-6 py-3 border border-transparent font-medium font-inter rounded-r-lg text-white bg-blue-600 transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+            isButtonDisabled && "disabled:opacity-50 disabled:hover:bg-blue-600"
           }`}
           disabled={isButtonDisabled}
         >
-          {isNotIdle ? "..." : "Go"}
+          {isNotIdle ? "Loading..." : "Open"}
         </button>
       </div>
     </Form>

@@ -31,7 +31,7 @@ export default function Index() {
   const { toastMessage } = useLoaderData<LoaderData>();
 
   return (
-    <div className="min-h-screen bg-[rgb(56,52,139)] flex flex-col">
+    <div className="min-h-screen bg-white flex flex-col">
       {toastMessage && (
         <ToastPopover
           message={toastMessage.message}
@@ -42,26 +42,26 @@ export default function Index() {
       )}
 
       {/* Header */}
-      <div className="flex justify-center p-8">
+      <div className="flex justify-center pt-12 pb-8">
         <Logo />
       </div>
 
       {/* Main Content */}
       <div className="flex-grow flex items-center justify-center px-8">
         <div className="max-w-4xl w-full text-center">
-          <ExtraLargeTitle className="text-lime-300 mb-4">
-            JSON Hero
+          <ExtraLargeTitle className="text-gray-900 mb-4 font-inter font-bold">
+            Professional JSON Viewer
           </ExtraLargeTitle>
-          <ExtraLargeTitle className="text-white mb-6">
-            A beautiful JSON viewer for the web
+          <ExtraLargeTitle className="text-gray-700 mb-6 font-inter font-medium">
+            Beautiful interface for developers & data teams
           </ExtraLargeTitle>
-          <SmallSubtitle className="text-slate-200 mb-12 max-w-2xl mx-auto">
-            Stop staring at thousand line JSON files in your editor and start
-            exploring them with our beautiful column view, search, and smart previews.
+          <SmallSubtitle className="text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+            Explore JSON data with our intuitive column view, powerful search capabilities, 
+            and intelligent content previews. Perfect for APIs, configurations, and data analysis.
           </SmallSubtitle>
 
           {/* Large Drop Zone Section */}
-          <div className="space-y-8">
+          <div className="space-y-10">
             {/* URL Input */}
             <div className="mb-8">
               <UrlForm />
@@ -73,8 +73,8 @@ export default function Index() {
             </div>
 
             {/* Sample URLs */}
-            <div className="mt-12 pt-8">
-              <Title className="mb-4 text-slate-200">No JSON? Try it out:</Title>
+            <div className="mt-16 pt-8 border-t border-gray-200">
+              <Title className="mb-6 text-gray-700 font-inter font-medium">Try with sample data:</Title>
               <SampleUrls />
             </div>
           </div>
@@ -82,14 +82,14 @@ export default function Index() {
       </div>
 
       {/* Footer */}
-      <div className="text-center py-8">
-        <SmallSubtitle className="text-slate-400">
-          Built with ❤️ by{" "}
+      <div className="text-center py-12 border-t border-gray-100">
+        <SmallSubtitle className="text-gray-500 font-inter">
+          Powered by{" "}
           <a 
-            href="https://trigger.dev" 
-            className="text-lime-300 hover:text-lime-200 transition-colors"
+            href="https://anyformat.app" 
+            className="text-blue-600 hover:text-blue-700 transition-colors font-medium"
           >
-            Trigger.dev
+            Anyformat
           </a>
         </SmallSubtitle>
       </div>

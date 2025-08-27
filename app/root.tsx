@@ -22,20 +22,20 @@ import openGraphImage from "~/assets/images/opengraph.png";
 
 export const meta: MetaFunction = ({ location }) => {
   const description =
-    "JSON Hero makes reading and understand JSON files easy by giving you a clean and beautiful UI packed with extra features.";
+    "Anyformat makes reading and understanding JSON files easy with a beautiful, professional interface designed for developers and data teams.";
   return {
-    title: "JSON Hero - a beautiful JSON viewer for the web",
+    title: "Anyformat - Professional JSON Viewer & Editor",
     viewport: "width=device-width,initial-scale=1",
     description,
-    "og:image": `https://jsonhero.io${openGraphImage}`,
-    "og:url": `https://jsonhero.io${location.pathname}`,
-    "og:title": "JSON Hero - A beautiful JSON viewer",
+    "og:image": `https://anyformat.app${openGraphImage}`,
+    "og:url": `https://anyformat.app${location.pathname}`,
+    "og:title": "Anyformat - Professional JSON Viewer",
     "og:description": description,
-    "twitter:image": `https://jsonhero.io${openGraphImage}`,
+    "twitter:image": `https://anyformat.app${openGraphImage}`,
     "twitter:card": "summary_large_image",
-    "twitter:creator": "@json_hero",
-    "twitter:site": "@json_hero",
-    "twitter:title": "JSON Hero",
+    "twitter:creator": "@anyformat",
+    "twitter:site": "@anyformat",
+    "twitter:title": "Anyformat",
     "twitter:description": description,
   };
 };
@@ -47,7 +47,13 @@ import { StarCountProvider } from "./components/StarCountProvider";
 import { PreferencesProvider } from "~/components/PreferencesProvider";
 
 export function links() {
-  return [{ rel: "stylesheet", href: styles }];
+  return [
+    { rel: "stylesheet", href: styles },
+    {
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap",
+    },
+  ];
 }
 
 export type LoaderData = {
@@ -105,13 +111,10 @@ export default function AppWithProviders() {
 
   const location = useLocation();
 
-  // Force dark mode on the homepage
-  const forceDarkMode = location.pathname === "/";
-
   return (
     <ThemeProvider
       specifiedTheme={theme}
-      themeOverride={forceDarkMode ? "dark" : themeOverride}
+      themeOverride={themeOverride}
     >
       <PreferencesProvider>
         <StarCountProvider starCount={starCount}>

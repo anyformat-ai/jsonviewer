@@ -66,27 +66,27 @@ export function DragAndDropForm() {
     <Form method="post" action="/actions/createFromFile" ref={formRef}>
       <div
         {...getRootProps()}
-        className={`block w-full cursor-pointer rounded-lg border-2 border-dashed transition-all duration-200 text-center ${
+        className={`block w-full cursor-pointer rounded-xl border-2 border-dashed transition-all duration-200 text-center ${
           isDragActive 
-            ? "border-lime-500 bg-lime-500/10 text-lime-500" 
-            : "border-slate-600 bg-slate-900/40 text-slate-300 hover:border-slate-500 hover:bg-slate-900/60"
-        } p-12 focus:border-indigo-500 focus:ring-indigo-500`}
+            ? "border-blue-500 bg-blue-50 text-blue-600" 
+            : "border-gray-300 bg-gray-50 text-gray-600 hover:border-gray-400 hover:bg-gray-100"
+        } p-16 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-20`}
       >
         <input {...getInputProps()} />
-        <div className="flex flex-col items-center space-y-4">
+        <div className="flex flex-col items-center space-y-6">
           <ArrowCircleDownIcon
-            className={`h-16 w-16 ${
-              isDragActive ? "text-lime-500" : "text-slate-400"
+            className={`h-20 w-20 ${
+              isDragActive ? "text-blue-500" : "text-gray-400"
             }`}
           />
           <div>
-            <p className={`text-xl font-medium ${isDragActive ? "text-lime-500" : "text-slate-300"}`}>
+            <p className={`text-2xl font-medium font-inter ${isDragActive ? "text-blue-600" : "text-gray-700"}`}>
               {isDragActive ? "Drop to open it" : "Drop your JSON file here"}
             </p>
-            <p className="text-sm text-slate-400 mt-2">
+            <p className="text-lg text-gray-500 mt-3 font-inter">
               or click to browse files
             </p>
-            <p className="text-xs text-slate-500 mt-1">
+            <p className="text-sm text-gray-400 mt-2 font-inter">
               Supports .json and .txt files up to 5MB
             </p>
           </div>

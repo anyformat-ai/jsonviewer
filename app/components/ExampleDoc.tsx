@@ -12,7 +12,7 @@ export function ExampleDoc({
   return (
     <Link
       to={`/j/${id}${path ? `?path=${path}` : ""}`}
-      className="bg-slate-900 px-4 py-2 rounded-md whitespace-nowrap text-lime-300 transition hover:text-lime-500"
+      className="bg-blue-50 hover:bg-blue-100 border border-blue-200 px-4 py-2 rounded-lg whitespace-nowrap text-blue-700 hover:text-blue-800 font-inter font-medium transition-colors"
     >
       {title}
     </Link>
